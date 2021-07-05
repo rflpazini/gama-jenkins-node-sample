@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('rflpazini-dockerhub')
+    }
+    stages {
+        stage('Build') {
+            steps {
+                sh """
+                    docker build -t jenkins-pipe:latest .
+                    docker tag jenkins-pipe $DOCKERHUB_CREDENTIALS_USR/jenkins-pipe:latest
+                    docker tag jenkins-pipe $DOCKERHUB_CREDENTIALS_USR/jenkins-pipe:$BUILD_NUMBER
+                """
+            }
+        }
+        stage('Publish') {
+            steps {
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                sh """
+                    docker push $DOCKERHUB_CREDENTIALS_USR/jenkins-pipe:latest
+                    docker push $DOCKERHUB_CREDENTIALS_USR/jenkins-pipe:$BUILD_NUMBER
+                """
+            }
+        }
+    }
+    post {
+        always {
+            sh 'docker logout'
+        }
+    }
+}

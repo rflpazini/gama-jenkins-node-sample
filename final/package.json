@@ -1,0 +1,30 @@
+{
+  "name": "jenkins-node-sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest",
+    "start": "nodemon --inspect=0.0.0.0 ./app.js",
+    "start:prod": "node ./app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rflpazini/jenkins-node-sample.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rflpazini/jenkins-node-sample/issues"
+  },
+  "homepage": "https://github.com/rflpazini/jenkins-node-sample#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "jest": "^27.0.6",
+    "nodemon": "^2.0.9",
+    "supertest": "^6.1.3"
+  }
+}
