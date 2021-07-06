@@ -23,7 +23,7 @@ pipeline {
         stage('Publish') {
             steps {
                 sh 'echo $DOCKERHUB_CRED_PSW | docker login -u $DOCKERHUB_CRED_USR --password-stdin'
-                sh """"
+                sh """
                     docker push $DOCKERHUB_CRED_USR/jenkins-node-sample:latest
                 """
             }
