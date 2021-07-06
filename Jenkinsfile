@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    tools { nodejs "node" }
+    tools { nodejs 'node' }
     environment {
         DOCKERHUB_CRED = credentials('dockerhub-token')
     }
@@ -9,6 +9,7 @@ pipeline {
             steps {
                 sh """
                     docker build -t jenkins-node-sample:latest .
+                    docker tag jenkins-node-sample rflpazini/jenkins-node-sample:latest
                 """
             }
         }
@@ -24,7 +25,6 @@ pipeline {
             steps {
                 sh 'echo $DOCKERHUB_CRED_PSW | docker login -u $DOCKERHUB_CRED_USR --password-stdin'
                 sh 'docker push rflpazini/jenkins-node-sample:latest'
-                
             }
         }
     }
