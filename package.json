@@ -20,7 +20,8 @@
   },
   "homepage": "https://github.com/rflpazini/jenkins-node-sample#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "unique-names-generator": "^4.6.0"
   },
   "devDependencies": {
     "jest": "^27.0.6",
