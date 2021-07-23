@@ -14,9 +14,11 @@ app.get('/', (req, res) => {
     res.send({ message:`Hello World from ${appName}!` })
 })
 
+const host = process.env.HOSTNAME || "localhost";
+
 const port = process.env.PORT || 3000,
   server = app.listen(port, () => {
-    console.log('🐋 %s is running at http://localhost:%d', appName, port);
+    console.log('🐋 %s is running at http://localhost:%d - pod: %s', appName, port, host);
   });
 
 module.exports = server;
